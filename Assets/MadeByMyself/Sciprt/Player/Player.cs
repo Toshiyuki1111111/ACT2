@@ -130,8 +130,4 @@ public class Player : Entity
         stateMachine.ChangeState(catchSword);
     }
 
-    public void ExitBlackHoleAbility()
-    {
-        stateMachine.ChangeState(airState);
-    }
 }
