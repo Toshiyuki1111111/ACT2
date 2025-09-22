@@ -77,13 +77,8 @@ public class Player : Entity
 
         CheckForDashInput();
 
-
-        //timer -= Time.deltaTime;
-
-        //if (timer < 0 && Input.GetKeyDown(KeyCode.LeftShift))
-        //{
-        //    timer = cooldown;
-        //}
+        if (Input.GetKeyDown(KeyCode.F))
+            skill.crystal.CanUseSkill();
     }
 
 
