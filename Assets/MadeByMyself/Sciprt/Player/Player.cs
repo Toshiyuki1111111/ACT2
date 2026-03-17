@@ -40,8 +40,8 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+        #region SetState
         stateMachine = new PlayerStateMachine();
-
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
@@ -54,6 +54,7 @@ public class Player : Entity
         aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSword = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         blackHole = new PlayerBlackholeState(this, stateMachine, "Jump");
+        #endregion
     }
 
     protected override void Start()
@@ -72,6 +73,13 @@ public class Player : Entity
     protected override void Update()
     {
         base.Update();
+
+        if (isBusy)
+        {
+            SetVelocity(0, rb.velocity.y);
+            stateMachine.ChangeState(idleState);
+            return;
+        }
 
         stateMachine.currentState.Update();
 

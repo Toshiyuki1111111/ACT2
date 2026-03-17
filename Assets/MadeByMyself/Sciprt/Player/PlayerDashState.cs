@@ -24,8 +24,8 @@ public class PlayerDashState : PlayerState
             return;
         }
 
-        SkillManager.instance.clone.CreateClone(player.transform,Vector3.zero);
-        // ÆäÓà´úÂë...
+        //SkillManager.instance.clone.CreateClone(player.transform,Vector3.zero);
+
         stateTimer = player.dashDuration;
     }
 

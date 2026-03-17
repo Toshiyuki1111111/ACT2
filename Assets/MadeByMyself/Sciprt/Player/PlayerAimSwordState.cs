@@ -17,8 +17,8 @@ public class PlayerAimSwordState : PlayerState
 
     public override void Exit()
     {
+        player.skill.sword.DotsActive(false);
         base.Exit();
-
         player.StartCoroutine("BusyFor", .2f);
     }
 

@@ -34,5 +34,6 @@ public class PlayerCatchSwordState : PlayerState
 
         if (triggerCalled)
             stateMachine.ChangeState(player.idleState);
+        player.skill.sword.DotsActive(false);
     }
 }

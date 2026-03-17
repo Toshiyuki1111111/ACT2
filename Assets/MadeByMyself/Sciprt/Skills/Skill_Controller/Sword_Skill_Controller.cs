@@ -47,7 +47,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         BounceLogic();
     }
 
-    private void BounceLogic()
+    private void BounceLogic()//µ¯ÉäÏà¹Ø
     {
         if (isBouncing && enemyTarget.Count > 0)
         {

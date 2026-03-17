@@ -6260,6 +6260,9 @@ MonoBehaviour:
   cooldown: 0
   crystalDuration: 7
   crystalPrefab: {fileID: 8756259585672363098, guid: a548b632e11376543a2fe6652aec5c97, type: 3}
+  canExplode: 1
+  canMove: 1
+  moveSpeed: 5
 --- !u!1 &1300470507
 GameObject:
   m_ObjectHideFlags: 0
@@ -6519,6 +6522,7 @@ GameObject:
   - component: {fileID: 1480822677}
   - component: {fileID: 1480822680}
   - component: {fileID: 1480822681}
+  - component: {fileID: 1480822682}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -6653,6 +6657,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6dbb96b3709bf3a4c806cca4bf1fb2be, type: 2}
+--- !u!114 &1480822682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480822676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b3181b2748be148a51afb60a0d1aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    baseValue: 10
+    modifiers: 
+  maxHealth:
+    baseValue: 20
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &2083600043
 GameObject:
   m_ObjectHideFlags: 0
@@ -6924,10 +6947,6 @@ PrefabInstance:
     - target: {fileID: 8756259585672363098, guid: a548b632e11376543a2fe6652aec5c97, type: 3}
       propertyPath: m_Name
       value: Crystal
-      objectReference: {fileID: 0}
-    - target: {fileID: 8756259585672363098, guid: a548b632e11376543a2fe6652aec5c97, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067263856039617456, guid: a548b632e11376543a2fe6652aec5c97, type: 3}
       propertyPath: m_LocalPosition.x

@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 5271466946710346252}
   - component: {fileID: 1049152452297226780}
   - component: {fileID: 5466458458541621772}
+  - component: {fileID: 4325636025093032833}
   m_Layer: 7
   m_Name: 'Enemy_Skeleton '
   m_TagString: Untagged
@@ -331,6 +332,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6dbb96b3709bf3a4c806cca4bf1fb2be, type: 2}
+--- !u!114 &4325636025093032833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317542954105561118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7763a52a2be0cc42b705ca1bec42600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    baseValue: 8
+    modifiers: 
+  maxHealth:
+    baseValue: 0
+    modifiers: 
+  currentHealth: 50
 --- !u!1 &5138951019746033919
 GameObject:
   m_ObjectHideFlags: 0
