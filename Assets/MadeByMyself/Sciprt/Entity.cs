@@ -51,7 +51,7 @@ public class Entity : MonoBehaviour
         
     }
 
-    public virtual void Damage()
+    public virtual void DamageEffect()
     {
         fx.StartCoroutine("FlashFX");
         Debug.Log(gameObject.name + " was damaged");
@@ -119,6 +119,11 @@ public class Entity : MonoBehaviour
             sr.color = Color.clear;
         else
             sr.color = Color.white;
+    }
+
+    public virtual void Die()
+    {
+
     }
 
 }

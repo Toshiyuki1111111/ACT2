@@ -6669,11 +6669,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b3181b2748be148a51afb60a0d1aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage:
-    baseValue: 10
+  strength:
+    baseValue: 0
+    modifiers: 
+  agility:
+    baseValue: 0
+    modifiers: 
+  intellgence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
     modifiers: 
   maxHealth:
     baseValue: 20
+    modifiers: 
+  armor:
+    baseValue: 0
+    modifiers: 
+  damage:
+    baseValue: 10
     modifiers: 
   currentHealth: 0
 --- !u!1 &2083600043

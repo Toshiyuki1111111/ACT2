@@ -106,7 +106,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         if (isReturning)
             return;
 
-        collision.GetComponent<Enemy>()?.Damage();
+        collision.GetComponent<Enemy>()?.DamageEffect();
 
         if (collision.GetComponent<Enemy>() != null)
         {

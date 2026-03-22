@@ -344,13 +344,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7763a52a2be0cc42b705ca1bec42600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: 
   damage:
     baseValue: 8
     modifiers: 
   maxHealth:
-    baseValue: 0
+    baseValue: 50
     modifiers: 
-  currentHealth: 50
+  currentHealth: 0
 --- !u!1 &5138951019746033919
 GameObject:
   m_ObjectHideFlags: 0
