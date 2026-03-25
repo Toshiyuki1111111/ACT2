@@ -6681,15 +6681,36 @@ MonoBehaviour:
   vitality:
     baseValue: 0
     modifiers: 
+  damage:
+    baseValue: 10
+    modifiers: 
+  critChance:
+    baseValue: 80
+    modifiers: 
+  critDamage:
+    baseValue: 0
+    modifiers: 
   maxHealth:
-    baseValue: 20
+    baseValue: 100
     modifiers: 
   armor:
     baseValue: 0
     modifiers: 
-  damage:
-    baseValue: 10
+  evasion:
+    baseValue: 0
     modifiers: 
+  fireDamage:
+    baseValue: 0
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  ligitningDamage:
+    baseValue: 0
+    modifiers: 
+  isIgnited: 0
+  isChilled: 0
+  isShocked: 0
   currentHealth: 0
 --- !u!1 &2083600043
 GameObject:
