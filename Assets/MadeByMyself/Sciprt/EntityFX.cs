@@ -10,6 +10,11 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private Material hitMat;
     private Material originalMat;
 
+    [Header("Ailment Color")]
+    [SerializeField] private Color chillColor;
+    [SerializeField] private Color[] igniteColor;
+    [SerializeField] private Color[] shockColor;
+
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -33,7 +38,7 @@ public class EntityFX : MonoBehaviour
             sr.color = Color.red;
     }
 
-    private void CancelRedBlink()
+    private void CancelColorChange()
     {
         CancelInvoke();
         sr.color = Color.white;
@@ -47,5 +52,18 @@ public class EntityFX : MonoBehaviour
     private void CancelBlueColor()
     {
         sr.color= Color.white;
+    }
+
+    public void IgniteFXFor(float _seconds)
+    {
+        InvokeRepeating("IgniteColorFX", 0, .3f);
+    }
+     
+    private void IgniteColorFX()
+    {
+        if (sr.color != igniteColor[0])
+            sr.color = igniteColor[0];
+        else 
+            sr.color = igniteColor[1];
     }
 }
