@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    private EntityFX fx;
+
+
     [Header("主要属性 Major stats")]
     public Stat strength;//力量，增加伤害,暴击伤害
     public Stat agility;//敏捷，增加闪避，暴击率
@@ -36,6 +39,7 @@ public class CharacterStats : MonoBehaviour
       寒冷，降低防御力
       触电，降低伤害*/
 
+    [SerializeField] private float ailmentsDuration = 2;
     private float ignitedTimer;
     private float chilledTimer;
     private float shockedTimer;
@@ -52,6 +56,8 @@ public class CharacterStats : MonoBehaviour
         critChance.SetDefaultValue(0);
         critDamage.SetDefaultValue(150);
         currentHealth = GetMaxHealth();
+
+        fx = GetComponent<EntityFX>();
     }
     protected virtual void Update()
     {
@@ -64,14 +70,17 @@ public class CharacterStats : MonoBehaviour
         if (ignitedTimer < 0)
         {
             isIgnited = false;
+            //fx.CancelColorChange();
         }
         if(chilledTimer < 0)
         {
             isChilled = false;
+            //fx.CancelColorChange();
         }
         if(shockedTimer < 0)
         {
             isShocked = false;
+            //fx.CancelColorChange();
         }
         
         
@@ -168,17 +177,20 @@ public class CharacterStats : MonoBehaviour
         if (_ignite)
         {
             isIgnited = _ignite;
-            ignitedTimer = 2;
+            ignitedTimer = ailmentsDuration;
+            fx.IgniteFXFor(ailmentsDuration);
         }
         if (_chill)
         {
             isChilled = _chill;
-            chilledTimer = 2;
+            chilledTimer = ailmentsDuration;
+            fx.ChillFXFor(ailmentsDuration);
         }
         if (_shock)
         {
             isShocked = _shock;
-            shockedTimer = 2;
+            shockedTimer = ailmentsDuration;
+            fx.ShockFXFor(ailmentsDuration);
         }
     }
     public virtual void TakeDamage(int _damage)

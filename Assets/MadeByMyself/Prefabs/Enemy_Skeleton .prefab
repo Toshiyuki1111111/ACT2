@@ -408,6 +408,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6dbb96b3709bf3a4c806cca4bf1fb2be, type: 2}
+  chillColor: {r: 0, g: 0, b: 0, a: 0}
+  igniteColor:
+  - {r: 1, g: 0.68490565, b: 0.68490565, a: 1}
+  - {r: 1, g: 0.19607843, b: 0.19607843, a: 1}
+  shockColor: []
 --- !u!114 &4325636025093032833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +459,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 20
     modifiers: 
   iceDamage:
     baseValue: 0
