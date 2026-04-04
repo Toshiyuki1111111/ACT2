@@ -24,7 +24,6 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
-    
 
     public int facingDir { get; set; } = 1;
     protected bool facingRight = true;
@@ -40,9 +39,6 @@ public class Entity : MonoBehaviour
         fx = GetComponent<EntityFX>();
         stats = GetComponentInChildren<CharacterStats>();
     }
-
-    
-
     protected virtual void Start()
     {
     }
@@ -50,6 +46,16 @@ public class Entity : MonoBehaviour
     protected virtual void Update()
     {
         
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+
+    public virtual void SlowEntityBy(float _slowPercentage,float _slowDuration)
+    {
+
     }
 
     public virtual void DamageEffect()

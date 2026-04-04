@@ -12,9 +12,12 @@ public class Player : Entity
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce = 12f;
+    private float defaultMoveSpeed;
+    private float defaultJumpForce;
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
+    private float defaultDashSpeed;
     public float dashDir { get; private set; }
     public SkillManager skill {  get; private set; }
     public GameObject sword { get; private set; }
@@ -63,10 +66,12 @@ public class Player : Entity
     {
 
         base.Start();
-
         skill = SkillManager.instance;
-
         stateMachine.Initialize(idleState);
+
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
 
     //public float timer;
@@ -91,6 +96,24 @@ public class Player : Entity
             skill.crystal.CanUseSkill();
     }
 
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed *= (1 - _slowPercentage);
+        jumpForce *= (1 - _slowPercentage);
+        dashSpeed *= (1 - _slowPercentage);
+        anim.speed *= (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed", _slowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
+    }
 
     public IEnumerator BusyFor(float _seconds)//玩家忙碌不可移动
     {

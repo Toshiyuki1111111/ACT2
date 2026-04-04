@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
@@ -32,6 +32,9 @@ public class CharacterStats : MonoBehaviour
     public Stat iceDamage;
     public Stat ligitningDamage;
 
+    
+    [SerializeField] private float slowPercentage = .2f;
+
     public bool isIgnited;//点燃
     public bool isChilled;//寒冷
     public bool isShocked;//触电（electrocution shocked）
@@ -48,6 +51,9 @@ public class CharacterStats : MonoBehaviour
     private float igniteDamageCoodlown = .3f;
     private float igniteDamageTimer;
     private int igniteDamage;
+
+    private int shockDamage;
+    [SerializeField] private GameObject shockStrikePrefab;
 
     public int currentHealth;
 
@@ -162,6 +168,10 @@ public class CharacterStats : MonoBehaviour
         {
             _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .1f));
         }
+        if (applyShock)
+        {
+            _targetStats.SetupShockStrikeDamage(Mathf.RoundToInt(_ligitningDamage * .1f));
+        }
 
         _targetStats.ApplyAllments(applyIgnite, applyChill, applyShock);
 
@@ -169,30 +179,72 @@ public class CharacterStats : MonoBehaviour
     }
     public void ApplyAllments(bool _ignite,bool _chill,bool _shock)
     {
-        if (isIgnited || isChilled || isShocked)
-        {
-            return;
-        }
-
-        if (_ignite)
+        bool canApplyIgnite = !isIgnited && !isChilled && isShocked;
+        bool canApplyChill = !isIgnited && !isChilled && isShocked;
+        bool canApplyShock = !isIgnited && !isChilled;
+        if (_ignite && canApplyIgnite)
         {
             isIgnited = _ignite;
             ignitedTimer = ailmentsDuration;
             fx.IgniteFXFor(ailmentsDuration);
         }
-        if (_chill)
+        if (_chill && canApplyChill)
         {
             isChilled = _chill;
             chilledTimer = ailmentsDuration;
+            GetComponent<Entity>().SlowEntityBy(slowPercentage, ailmentsDuration);
             fx.ChillFXFor(ailmentsDuration);
         }
         if (_shock)
         {
-            isShocked = _shock;
-            shockedTimer = ailmentsDuration;
-            fx.ShockFXFor(ailmentsDuration);
+            if (!isShocked)
+            {
+                isShocked = _shock;
+                shockedTimer = ailmentsDuration;
+                fx.ShockFXFor(ailmentsDuration);
+            }
+            else
+            {
+                if (GetComponent<Player>() != null)
+                    return;
+
+                HitNearestTargetWithShockStrike();
+            }
         }
     }
+
+    private void HitNearestTargetWithShockStrike()
+    {
+        //寻找目标 发射电弧
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 15);
+
+        float closestDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+
+        foreach (var hit in colliders)
+        {
+            if (hit.GetComponent<Enemy>() != null && Vector2.Distance(transform.position, hit.transform.position) > 1)
+            {
+                float distanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);
+
+                if (distanceToEnemy < closestDistance)
+                {
+                    closestDistance = distanceToEnemy;
+                    closestEnemy = hit.transform;
+                }
+            }
+
+            //if (closestEnemy != null)
+            //    closestEnemy = transform;
+        }
+
+        if (closestEnemy != null)
+        {
+            GameObject newShockStrike = Instantiate(shockStrikePrefab, transform.position, Quaternion.identity);
+            newShockStrike.GetComponent<ShockStrikeController>().Setup(shockDamage, closestEnemy.GetComponent<CharacterStats>());
+        }
+    }
+
     public virtual void TakeDamage(int _damage)
     {
         currentHealth -= _damage;
@@ -241,6 +293,8 @@ public class CharacterStats : MonoBehaviour
     }
 
     public void SetupIgniteDamage(int _damage) => igniteDamage = _damage;
+
+    public void SetupShockStrikeDamage(int _damage) => shockDamage = _damage;
 
     public int GetMaxHealth()
     {
