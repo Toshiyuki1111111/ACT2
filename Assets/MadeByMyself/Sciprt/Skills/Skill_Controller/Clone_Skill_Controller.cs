@@ -12,11 +12,13 @@ public class Clone_Skill_Controller : MonoBehaviour
     [SerializeField] private Transform attackCheck;
     [SerializeField] private float attackCheckRadius = 1f;
     private Transform closestEnemy;
+    private Player player;
 
     private void Awake()
     {
         sr= GetComponent<SpriteRenderer>();
         anim= GetComponent<Animator>();
+        player = PlayerManager.instance.player;
     }
     private void Update()
     {
@@ -54,11 +56,12 @@ public class Clone_Skill_Controller : MonoBehaviour
     private void AttackTrigger()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius);
-
         foreach (var hit in colliders)
         {
             if (hit.GetComponent<Enemy>() != null)
-                hit.GetComponent<Enemy>().DamageEffect();
+            {
+                player.stats.DoDamage(hit.GetComponent<CharacterStats>());
+            }
         }
 
     }

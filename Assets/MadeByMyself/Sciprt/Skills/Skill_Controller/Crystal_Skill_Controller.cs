@@ -18,6 +18,7 @@ public class Crystal_Skill_Controller : MonoBehaviour
     private Transform closestTarget;
     [SerializeField] private float growSpeed;
 
+    private Player player;
     public void SetupCrystal(float _crystalDuration,bool _canExplode,Transform _closestTarget)
     {
         crystalExistTimer = _crystalDuration;
@@ -27,6 +28,10 @@ public class Crystal_Skill_Controller : MonoBehaviour
         closestTarget = _closestTarget;
     }
 
+    private void Start()
+    {
+        player = PlayerManager.instance.player;
+    }
     private void Update()
     {
         crystalExistTimer -= Time.deltaTime;
@@ -56,7 +61,7 @@ public class Crystal_Skill_Controller : MonoBehaviour
         foreach (var hit in colliders)
         {
             if (hit.GetComponent<Enemy>() != null)
-                hit.GetComponent<Enemy>().DamageEffect();
+                player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
         }
     }
 

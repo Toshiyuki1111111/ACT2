@@ -127,8 +127,8 @@ public class CharacterStats : MonoBehaviour
 
         }
         totalDamage = Mathf.Clamp(totalDamage, 0, int.MaxValue);
-        //_targetStats.TakeDamage(totalDamage);       后续取消注释！！！！！！！！！
-        DoMagicalDamage(_targetStats);
+        _targetStats.TakeDamage(totalDamage);       //后续取消
+        //DoMagicalDamage(_targetStats);
     }
     public virtual void DoMagicalDamage(CharacterStats _targetStats)
     {

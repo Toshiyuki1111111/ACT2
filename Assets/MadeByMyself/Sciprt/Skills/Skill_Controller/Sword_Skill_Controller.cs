@@ -23,6 +23,7 @@ public class Sword_Skill_Controller : MonoBehaviour
     private List<Transform> enemyTarget;
     private int targetIndex;
 
+
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -105,8 +106,11 @@ public class Sword_Skill_Controller : MonoBehaviour
     {
         if (isReturning)
             return;
-
-        collision.GetComponent<Enemy>()?.DamageEffect();
+        if (collision.GetComponent<Enemy>())
+        {
+            player.stats.DoDamage(collision.GetComponent<CharacterStats>());
+        }
+        
 
         if (collision.GetComponent<Enemy>() != null)
         {

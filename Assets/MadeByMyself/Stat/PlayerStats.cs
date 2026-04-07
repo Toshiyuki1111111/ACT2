@@ -9,7 +9,7 @@ public class PlayerStats : CharacterStats
     {
         base.Start();
 
-        player = GetComponent<Player>();
+        player = PlayerManager.instance.player;
     }
 
     public override void TakeDamage(int _damage)
@@ -18,6 +18,7 @@ public class PlayerStats : CharacterStats
 
         player.DamageEffect();
     }
+
 
     protected override void Die()
     {
