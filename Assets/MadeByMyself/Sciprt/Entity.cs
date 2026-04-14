@@ -58,12 +58,7 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void DamageEffect()
-    {
-        fx.StartCoroutine("FlashFX");
-        Debug.Log(gameObject.name + " was damaged");
-        StartCoroutine("HitKnockback");
-    }
+    public virtual void DamageImpact() => StartCoroutine("HitKnockback");
 
     protected virtual IEnumerator HitKnockback()
     {

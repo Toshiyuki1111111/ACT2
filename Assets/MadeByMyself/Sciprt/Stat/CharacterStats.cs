@@ -102,6 +102,7 @@ public class CharacterStats : MonoBehaviour
             igniteDamageTimer = igniteDamageCoodlown;
         }
     }
+    #region Calculate Damage
     public virtual void DoDamage(CharacterStats _targetStats)
     {
         if (CanAvoid(_targetStats))
@@ -130,6 +131,51 @@ public class CharacterStats : MonoBehaviour
         _targetStats.TakeDamage(totalDamage);       //后续取消
         //DoMagicalDamage(_targetStats);
     }
+    public virtual void TakeDamage(int _damage)
+    {
+        currentHealth -= _damage;
+
+        GetComponent<Entity>().DamageImpact();
+        fx.StartCoroutine("FlashFX");
+        Debug.Log(_damage);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    private bool CanAvoid(CharacterStats _targetStats)
+    {
+        int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
+        float evasionChance = totalEvasion / (100f + totalEvasion);
+        evasionChance = Mathf.Clamp(evasionChance, 0, 50);
+        if (UnityEngine.Random.value < evasionChance)
+        {
+            Debug.Log("Miss!");
+            return true;
+        }
+
+        return false;
+    }
+    private bool CanCrit()
+    {
+        int totalCriticalChance = critChance.GetValue() + agility.GetValue();
+        if (UnityEngine.Random.Range(1, 100) < totalCriticalChance)
+        {
+            Debug.Log("Crit!");
+            return true;
+        }
+        return false;
+    }
+    private int CalculateCritDamage(int _damage)
+    {
+        float totalCritPower = (this.critDamage.GetValue() + strength.GetValue()) * .01f;//计算暴击伤害倍率
+        float critDamage = _damage * totalCritPower;
+        return Mathf.RoundToInt(critDamage);
+    }
+    #endregion
+
+    #region Magic Damage And Allments
     public virtual void DoMagicalDamage(CharacterStats _targetStats)
     {
         int _fireDamage = fireDamage.GetValue();
@@ -179,8 +225,8 @@ public class CharacterStats : MonoBehaviour
     }
     public void ApplyAllments(bool _ignite,bool _chill,bool _shock)
     {
-        bool canApplyIgnite = !isIgnited && !isChilled && isShocked;
-        bool canApplyChill = !isIgnited && !isChilled && isShocked;
+        bool canApplyIgnite = !isIgnited && !isChilled && !isShocked;
+        bool canApplyChill = !isIgnited && !isChilled && !isShocked;
         bool canApplyShock = !isIgnited && !isChilled;
         if (_ignite && canApplyIgnite)
         {
@@ -212,6 +258,7 @@ public class CharacterStats : MonoBehaviour
             }
         }
     }
+    #endregion
 
     private void HitNearestTargetWithShockStrike()
     {
@@ -245,56 +292,17 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(int _damage)
-    {
-        currentHealth -= _damage;
-
-        Debug.Log(_damage);
-
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
-    }
+    
     protected virtual void Die()
     {
 
     }
-    private bool CanAvoid(CharacterStats _targetStats)
-    {
-        int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
-        float evasionChance = totalEvasion / (100f + totalEvasion);
-        evasionChance = Mathf.Clamp(evasionChance, 0, 50);
-        if (UnityEngine.Random.value < evasionChance)
-        {
-            Debug.Log("Miss!");
-            return true;
-        }
 
-        return false;
-    }
-
-    private bool CanCrit()
-    {
-        int totalCriticalChance = critChance.GetValue() + agility.GetValue();
-        if (UnityEngine.Random.Range(1, 100) < totalCriticalChance)
-        {
-            Debug.Log("Crit!");
-            return true;
-        }
-        return false;
-    }
-
-    private int CalculateCritDamage(int _damage)
-    {
-        float totalCritPower = (this.critDamage.GetValue() + strength.GetValue()) * .01f;//计算暴击伤害倍率
-        float critDamage = _damage * totalCritPower;
-        return Mathf.RoundToInt(critDamage);
-    }
-
+    #region Setup AllmentsDamage
     public void SetupIgniteDamage(int _damage) => igniteDamage = _damage;
 
     public void SetupShockStrikeDamage(int _damage) => shockDamage = _damage;
+    #endregion
 
     public int GetMaxHealth()
     {
