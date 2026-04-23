@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 3a6e08eaab8d25b47b3cbca3909a5b6e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - thunderPrefab: {fileID: 7796553278235138725, guid: 03c76be0c30f7024487f2d2d4241c3fa, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888f586e1f3659e4ea97f7bbb57d131e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfItems: 0
+  possibleItemDrop: 2
   possibleDrop:
   - {fileID: 11400000, guid: 9dfd8b34ff9d48945b23ca5adaa659f9, type: 2}
   - {fileID: 11400000, guid: 423c00fbb88a5c24aa9969ee8f504e92, type: 2}

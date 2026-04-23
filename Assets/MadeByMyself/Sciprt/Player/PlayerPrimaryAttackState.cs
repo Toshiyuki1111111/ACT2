@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerPrimaryAttackState : PlayerState
 {
-    private int comboCounter = 0;
+    public int comboCounter { get; private set; }
     private float lastTimeAttacked;
     private float comboWindow = 0.5f;
     

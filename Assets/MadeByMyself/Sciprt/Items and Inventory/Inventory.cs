@@ -226,4 +226,16 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
+
+    public ItemData_Equipment GetEquipment(EquipmentType _type)
+    {
+        ItemData_Equipment equipmentItem = null;
+        foreach(KeyValuePair<ItemData_Equipment,InventoryItem> item in equipmentDictionary)
+        {
+            if (item.Key.equipmentType == _type)
+                equipmentItem = item.Key;
+
+        }
+        return equipmentItem;
+    }
 }
