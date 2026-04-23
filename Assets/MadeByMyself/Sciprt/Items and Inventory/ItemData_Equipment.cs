@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum EquipmentType
@@ -12,4 +13,77 @@ public enum EquipmentType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
+
+    [Header("主要属性 Major stats")]
+    public int strength;//力量
+    public int agility;//敏捷
+    public int intelligence;//智力
+    public int vitality;//活力
+
+    [Header("攻击属性 Offensive stats")]
+    public int damage;
+    public int critChance;//暴击率
+    public int critDamage;//暴击伤害
+
+    [Header("防御属性 Defenive stats")]
+    public int maxHealth;
+    public int armor;//护甲
+    public int evasion;//闪避
+    public int magicResistance;
+
+    [Header("魔法属性 Magic stats")]
+    public int fireDamage;
+    public int iceDamage;
+    public int ligitningDamage;
+
+    [Header("Craft requirements")]
+    public List<InventoryItem> craftMaterials;
+
+    public void AddModifiers()
+    {
+        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+
+        playerStats.strength.AddModifier(strength);
+        playerStats.agility.AddModifier(agility);
+        playerStats.intelligence.AddModifier(intelligence);
+        playerStats.vitality.AddModifier(vitality);
+
+        playerStats.damage.AddModifier(damage);
+        playerStats.critChance.AddModifier(critChance);
+        playerStats.critDamage.AddModifier(critDamage);
+
+        playerStats.maxHealth.AddModifier(maxHealth);
+        playerStats.armor.AddModifier(armor);
+        playerStats.evasion.AddModifier(evasion);
+        playerStats.magicResistance.AddModifier(magicResistance);
+
+        playerStats.fireDamage.AddModifier(fireDamage);
+        playerStats.iceDamage.AddModifier(iceDamage);
+        playerStats.ligitningDamage.AddModifier(ligitningDamage);
+
+    }
+
+    public void RemoveModifiers()
+    {
+        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+
+        playerStats.strength.RemoveModifier(strength);
+        playerStats.agility.RemoveModifier(agility);
+        playerStats.intelligence.RemoveModifier(intelligence);
+        playerStats.vitality.RemoveModifier(vitality);
+
+        playerStats.damage.RemoveModifier(damage);
+        playerStats.critChance.RemoveModifier(critChance);
+        playerStats.critDamage.RemoveModifier(critDamage);
+
+        playerStats.maxHealth.RemoveModifier(maxHealth);
+        playerStats.armor.RemoveModifier(armor);
+        playerStats.evasion.RemoveModifier(evasion);
+        playerStats.magicResistance.RemoveModifier(magicResistance);
+
+        playerStats.fireDamage.RemoveModifier(fireDamage);
+        playerStats.iceDamage.RemoveModifier(iceDamage);
+        playerStats.ligitningDamage.RemoveModifier(ligitningDamage);
+    }
+
 }

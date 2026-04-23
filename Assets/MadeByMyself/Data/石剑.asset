@@ -15,4 +15,24 @@ MonoBehaviour:
   itemType: 1
   itemName: "\u77F3\u5251"
   icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
   equipmentType: 0
+  strength: 0
+  agility: 0
+  intelligence: 0
+  vitality: 0
+  damage: 10
+  critChance: 0
+  critDamage: 0
+  maxHealth: 0
+  armor: 0
+  evasion: 0
+  magicResistance: 0
+  fireDamage: 0
+  iceDamage: 0
+  ligitningDamage: 0
+  craftMaterials:
+  - data: {fileID: 11400000, guid: 067d6cc0abda39243ae8af977529641f, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 423c00fbb88a5c24aa9969ee8f504e92, type: 2}
+    stackSize: 1

@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b40d356d81bc95e4da47970eb1c64301, type: 3}
-  m_Name: "\u52A8\u7269\u76AE"
+  m_Name: "\u77F3\u5934"
   m_EditorClassIdentifier: 
-  itemName: "\u52A8\u7269\u76AE"
-  icon: {fileID: -973012730, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemType: 0
+  itemName: "\u77F3\u5934"
+  icon: {fileID: 1025795234, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 50

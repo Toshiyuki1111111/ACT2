@@ -19,7 +19,7 @@ public class SkeletonGroundedState : EnemyState
         // 确保 PlayerManager 和 player 都存在
         if (PlayerManager.instance == null || PlayerManager.instance.player == null)
         {
-            Debug.LogWarning("PlayerManager or Player is not ready! Retrying...");
+            //Debug.LogWarning("PlayerManager or Player is not ready! Retrying...");
             // 可以延迟再试一次（例如用协程）
             enemy.StartCoroutine(WaitForPlayer());
             return;
@@ -36,6 +36,19 @@ public class SkeletonGroundedState : EnemyState
     public override void Update()
     {
         base.Update();
+
+        if (player == null)
+        {
+            // 尝试重新获取 player
+            if (PlayerManager.instance != null && PlayerManager.instance.player != null)
+            {
+                player = PlayerManager.instance.player.transform;
+            }
+            else
+            {
+                return; // 如果还是 null，跳过这一帧
+            }
+        }
 
         if (enemy.IsPlayerDelected() || Vector2.Distance(enemy.transform.position, player.position) < 2 * enemy.attackDistance)
             stateMachine.ChangeState(enemy.battleState);

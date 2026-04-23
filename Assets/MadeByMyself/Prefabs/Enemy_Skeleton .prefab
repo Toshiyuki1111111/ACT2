@@ -179,7 +179,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -861339349
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -85727878, guid: 687df074731fbf744b668d2275dbb675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 1049152452297226780}
   - component: {fileID: 5466458458541621772}
   - component: {fileID: 4325636025093032833}
+  - component: {fileID: 8476618541664873723}
   m_Layer: 7
   m_Name: 'Enemy_Skeleton '
   m_TagString: Untagged
@@ -412,8 +413,8 @@ MonoBehaviour:
   - {r: 0.22745098, g: 1, b: 0.972549, a: 1}
   - {r: 0.22745098, g: 1, b: 0.972549, a: 1}
   igniteColor:
-  - {r: 1, g: 0.41960785, b: 0.1882353, a: 1}
-  - {r: 1, g: 0.41960785, b: 0.1882353, a: 1}
+  - {r: 1, g: 0.19215687, b: 0.19215687, a: 1}
+  - {r: 1, g: 0.19215687, b: 0.19215687, a: 1}
   shockColor:
   - {r: 0.7921569, g: 0.6666667, b: 0, a: 1}
   - {r: 0.7921569, g: 0.6666667, b: 0, a: 1}
@@ -466,7 +467,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   iceDamage:
-    baseValue: 2
+    baseValue: 0
     modifiers: 
   ligitningDamage:
     baseValue: 0
@@ -478,6 +479,25 @@ MonoBehaviour:
   ailmentsDuration: 2
   shockStrikePrefab: {fileID: 5683818533943803890, guid: 079a15c5566952d40864bc57bbe27963, type: 3}
   currentHealth: 0
+--- !u!114 &8476618541664873723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317542954105561118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888f586e1f3659e4ea97f7bbb57d131e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfItems: 0
+  possibleDrop:
+  - {fileID: 11400000, guid: 9dfd8b34ff9d48945b23ca5adaa659f9, type: 2}
+  - {fileID: 11400000, guid: 423c00fbb88a5c24aa9969ee8f504e92, type: 2}
+  - {fileID: 11400000, guid: 067d6cc0abda39243ae8af977529641f, type: 2}
+  dropPrefab: {fileID: 3305166479911734365, guid: e52098f431e51fd4ebcbc4cd222c6f31, type: 3}
+  item: {fileID: 11400000, guid: dbc4300c5d41f274085e9c4f14aceaf9, type: 2}
 --- !u!1 &4872720595960216074
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +576,7 @@ GameObject:
   - component: {fileID: 3110697750410860728}
   - component: {fileID: 5552760255808888657}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Health_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

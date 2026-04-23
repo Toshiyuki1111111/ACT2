@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40d356d81bc95e4da47970eb1c64301, type: 3}
   m_Name: "\u91D1\u952D"
   m_EditorClassIdentifier: 
+  itemType: 0
   itemName: "\u91D1\u952D"
   icon: {fileID: -957751355, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 10
