@@ -8,6 +8,8 @@ public class CharacterStats : MonoBehaviour
 {
     private EntityFX fx;
 
+    public bool isDead = false;
+
 
     [Header("主要属性 Major stats")]
     public Stat strength;//力量，增加伤害,暴击伤害
@@ -92,6 +94,7 @@ public class CharacterStats : MonoBehaviour
         
         if (isIgnited && igniteDamageTimer < 0)
         {
+            if (isDead) return;
             Debug.Log("Take burn damage " + igniteDamage);
 
             currentHealth -= igniteDamage;
@@ -133,6 +136,7 @@ public class CharacterStats : MonoBehaviour
     }
     public virtual void TakeDamage(int _damage)
     {
+        if (isDead) return;
         currentHealth -= _damage;
 
         GetComponent<Entity>().DamageImpact();
@@ -225,6 +229,7 @@ public class CharacterStats : MonoBehaviour
     }
     public void ApplyAllments(bool _ignite,bool _chill,bool _shock)
     {
+        if (isDead) return;
         bool canApplyIgnite = !isIgnited && !isChilled && !isShocked;
         bool canApplyChill = !isIgnited && !isChilled && !isShocked;
         bool canApplyShock = !isIgnited && !isChilled;
@@ -258,6 +263,17 @@ public class CharacterStats : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region Health
+
+    public virtual void IncreaseHealthBy(int _amount)
+    {
+        currentHealth += _amount;
+        if (currentHealth > GetMaxHealth())
+            currentHealth = GetMaxHealth();
+    }
+
     #endregion
 
     private void HitNearestTargetWithShockStrike()
@@ -295,7 +311,9 @@ public class CharacterStats : MonoBehaviour
     
     protected virtual void Die()
     {
-
+        if (isDead) return;
+        else
+            isDead = true;
     }
 
     #region Setup AllmentsDamage

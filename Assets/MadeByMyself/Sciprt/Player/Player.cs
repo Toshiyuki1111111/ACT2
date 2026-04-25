@@ -94,6 +94,9 @@ public class Player : Entity
 
         if (Input.GetKeyDown(KeyCode.I))
             skill.crystal.CanUseSkill();
+
+        if (Input.GetKeyDown(KeyCode.O))
+            Inventory.instance.UseFlask();
     }
 
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)

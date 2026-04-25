@@ -10,12 +10,13 @@ public class PlayerDeadState : PlayerState
 
     public override void Enter()
     {
-        base.Enter();
+        player.anim.SetTrigger("Dead");
+        rb = player.rb;
+        triggerCalled = false;
     }
 
     public override void Exit()
     {
-        base.Exit();
     }
 
     public override void Update()
