@@ -67,6 +67,18 @@ public class CharacterStats : MonoBehaviour
 
         fx = GetComponent<EntityFX>();
     }
+    public virtual void IncreaseStatBy(int _modifier, float _duration, Stat _statToModify)
+    {
+        StartCoroutine(StatBuff(_modifier, _duration, _statToModify));
+    }
+
+    private IEnumerator StatBuff(int _modifier, float _duration, Stat _statToModify)
+    {
+        _statToModify.AddModifier(_modifier);
+        yield return new WaitForSeconds(_duration);
+        _statToModify.RemoveModifier(_modifier);
+    }
+
     protected virtual void Update()
     {
         ignitedTimer -= Time.deltaTime;
@@ -105,6 +117,7 @@ public class CharacterStats : MonoBehaviour
             igniteDamageTimer = igniteDamageCoodlown;
         }
     }
+
     #region Calculate Damage
     public virtual void DoDamage(CharacterStats _targetStats)
     {
