@@ -3,6 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+public enum StatType
+{
+    strength,
+    agility,
+    intelligence,
+    vitality,
+    damage,
+    critChance,
+    critDamage,
+    maxHealth,
+    armor,
+    evasion,
+    magicResistance,
+    fireDamage,
+    iceDamage,
+    ligitningDamage,
+}
 
 public class CharacterStats : MonoBehaviour
 {
@@ -338,5 +355,42 @@ public class CharacterStats : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth.GetValue() + vitality.GetValue() * 3;
+    }
+
+    public Stat GetStat(StatType _statType)
+    {
+        switch (_statType)
+        {
+            case StatType.strength:
+                return strength;
+            case StatType.agility:
+                return agility;
+            case StatType.intelligence:
+                return intelligence;
+            case StatType.vitality:
+                return vitality;
+            case StatType.damage:
+                return damage;
+            case StatType.critChance:
+                return critChance;
+            case StatType.critDamage:
+                return critDamage;
+            case StatType.maxHealth:
+                return maxHealth;
+            case StatType.armor:
+                return armor;
+            case StatType.evasion:
+                return evasion;
+            case StatType.magicResistance:
+                return magicResistance;
+            case StatType.fireDamage:
+                return fireDamage;
+            case StatType.iceDamage:
+                return iceDamage;
+            case StatType.ligitningDamage:
+                return ligitningDamage;
+            default:
+                return null;
+        }
     }
 }
