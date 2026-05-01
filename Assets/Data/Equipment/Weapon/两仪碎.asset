@@ -10,23 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1f794d3eb3463643ac05126e7aef1fe, type: 3}
-  m_Name: "\u6728\u5251"
+  m_Name: "\u4E24\u4EEA\u788E"
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: "\u6728\u5251"
-  icon: {fileID: 1025091068, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemName: "\u4E24\u4EEA\u788E"
+  icon: {fileID: 1398721256, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
   equipmentType: 0
-  strength: 8
+  itemCooldowm: 0
+  itemEffects:
+  - {fileID: 11400000, guid: 8603202d6b4d0364c9ba012c0f294a8c, type: 2}
+  strength: 0
   agility: 0
   intelligence: 0
   vitality: 0
-  damage: 5
+  damage: 10
   critChance: 0
   critDamage: 0
   maxHealth: 0
   armor: 0
   evasion: 0
   magicResistance: 0
-  fireDamage: 0
-  iceDamage: 0
+  fireDamage: 5
+  iceDamage: 5
   ligitningDamage: 0
+  craftMaterials: []

@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2220907580686160111}
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: 912f0eeed6e077648b192e98965b085a, type: 2}
   velocity: {x: -5, y: 10}
 --- !u!61 &6511898605333967974
 BoxCollider2D:

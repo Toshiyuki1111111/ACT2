@@ -136,11 +136,11 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData _item)
     {
-        if (_item.itemType == ItemType.Equipment)
+        if (_item.itemType == ItemType.Equipment && CanAddItem())
         {
             AddToInventory(_item);
         }
-        else if(_item.itemType == ItemType.Material)
+        else if (_item.itemType == ItemType.Material)
         {
             AddToStash(_item);
         }
@@ -203,6 +203,17 @@ public class Inventory : MonoBehaviour
             }
         }
         UpdateSlotUI();
+    }
+
+    public bool CanAddItem()
+    {
+        if (inventory.Count >= inventoryItemSlot.Length)
+        {
+            Debug.Log("Can't Add Item");
+            return false;
+        }
+
+        return true;
     }
 
     public bool CanCraft(ItemData_Equipment _itemToCraft,List<InventoryItem> _requiredMaterials)

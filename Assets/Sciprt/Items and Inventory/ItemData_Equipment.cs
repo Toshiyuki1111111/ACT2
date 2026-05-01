@@ -96,4 +96,40 @@ public class ItemData_Equipment : ItemData
         playerStats.ligitningDamage.RemoveModifier(ligitningDamage);
     }
 
+    public override string GetDescription()
+    {
+        sb.Length = 0;
+
+        AddItemDescription(strength, "Á¦Á¿");
+        AddItemDescription(agility, "Ãô½Ý");
+        AddItemDescription(intelligence, "ÖÇÊ¶");
+        AddItemDescription(vitality, "ÌåÖÊ");
+
+        AddItemDescription(damage, "¹¥»÷Á¦");
+        AddItemDescription(critChance, "±©»÷ÂÊ");
+        AddItemDescription(critDamage, "±©»÷ÉËº¦");
+
+        AddItemDescription(maxHealth, "ÉúÃüÖµ");
+        AddItemDescription(evasion, "ÉÁ±Ü");
+        AddItemDescription(armor, "»¤¼×");
+        AddItemDescription(magicResistance, "Ä§·¨¿¹ÐÔ");
+
+        AddItemDescription(fireDamage, "»ð");
+        AddItemDescription(iceDamage, "±ù");
+        AddItemDescription(ligitningDamage, "À×");
+
+        return sb.ToString();
+    }
+
+    private void AddItemDescription(int _value,string _name)
+    {
+        if (_value != 0)
+        {
+            if (sb.Length > 0)
+                sb.AppendLine();
+            if (_value > 0)
+                sb.Append(_name + ": " + _value);
+        }
+    }
+
 }

@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1f794d3eb3463643ac05126e7aef1fe, type: 3}
-  m_Name: "\u77F3\u5251"
+  m_Name: "\u7384\u94C1\u5251"
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: "\u77F3\u5251"
+  itemName: "\u7384\u94C1\u5251"
   icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropChance: 0
   equipmentType: 0
+  itemCooldowm: 0
+  itemEffects: []
   strength: 0
   agility: 0
   intelligence: 0
