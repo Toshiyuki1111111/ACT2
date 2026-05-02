@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: "\u4E5D\u5929\u96F7\u541F\u5251"
-  icon: {fileID: 367297872, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemIcon: {fileID: 367297872, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropChance: 0
   equipmentType: 0
   itemCooldowm: 0
@@ -34,4 +34,8 @@ MonoBehaviour:
   fireDamage: 0
   iceDamage: 0
   ligitningDamage: 5
-  craftMaterials: []
+  craftMaterials:
+  - data: {fileID: 11400000, guid: dbc4300c5d41f274085e9c4f14aceaf9, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 6b86c58b0cd862f4d9b430cba5abba47, type: 2}
+    stackSize: 1

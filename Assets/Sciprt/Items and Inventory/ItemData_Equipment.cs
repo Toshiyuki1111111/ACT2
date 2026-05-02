@@ -128,7 +128,7 @@ public class ItemData_Equipment : ItemData
             if (sb.Length > 0)
                 sb.AppendLine();
             if (_value > 0)
-                sb.Append(_name + ": " + _value);
+                sb.Append("+ " + _value + " " + _name);
         }
     }
 
