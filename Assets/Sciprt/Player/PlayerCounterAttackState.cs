@@ -17,14 +17,14 @@ public class PlayerCounterAttackState : PlayerState
     }
 
     public override void Exit()
-    {
+    { 
         base.Exit();
     }
 
     public override void Update()
     {
         base.Update();
-
+        
         player.ZeroVelocity();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 

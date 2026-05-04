@@ -92,7 +92,7 @@ public class Player : Entity
 
         CheckForDashInput();
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && skill.crystal.crystalUnlocked)
             skill.crystal.CanUseSkill();
 
         if (Input.GetKeyDown(KeyCode.O))
@@ -129,8 +129,8 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        
-
+        if (skill.dash.dashUnlocked == false)
+            return;
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill() && stateMachine.currentState != primaryAttack)
         {

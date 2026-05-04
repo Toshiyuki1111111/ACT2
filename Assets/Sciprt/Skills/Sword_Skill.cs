@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SwordType
 {
@@ -17,10 +18,13 @@ public class Sword_Skill : Skill
     [SerializeField] private float bounceGravity;
 
     [Header("Peirce info")]
+    [SerializeField] private UI_SkillTreeSlot pierceUnlockButton;
     [SerializeField] private int pierceAmount;
     [SerializeField] private float pierceGravity;
 
     [Header("Skill info")]
+    [SerializeField] private UI_SkillTreeSlot swordUnlockButton;
+    public bool swordUnlocked { get; private set; }
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchForce;
     [SerializeField] private float swordGravity;
@@ -48,6 +52,8 @@ public class Sword_Skill : Skill
         GenerateDots();
         SetupGravity();
 
+        swordUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSword);
+        pierceUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockPierceSword);
     }
 
     private void SetupGravity()
@@ -61,6 +67,9 @@ public class Sword_Skill : Skill
     protected override void Update()
     {
         base.Update();
+
+        if (!swordUnlocked)
+            return;
 
         if (player == null)
             return;
@@ -99,6 +108,20 @@ public class Sword_Skill : Skill
             UpdateDotsPosition();
         }
     }
+
+    #region Unlock
+    private void UnlockSword()
+    {
+        if (swordUnlockButton.unlocked)
+            swordUnlocked = true;
+    }
+
+    private void UnlockPierceSword()
+    {
+        if(pierceUnlockButton.unlocked)
+            swordType = SwordType.Pierce;
+    }
+    #endregion
 
     private void HandleAngleAdjustment()
     {
@@ -171,6 +194,9 @@ public class Sword_Skill : Skill
     public void DotsActive(bool _isActive)
     {
         if (dots == null || player.sword != null)//try
+            return;
+
+        if (!swordUnlocked)
             return;
 
         for (int i = 0; i < dots.Length; i++)

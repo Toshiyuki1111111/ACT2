@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public enum EquipmentType
@@ -15,6 +16,8 @@ public class ItemData_Equipment : ItemData
     public EquipmentType equipmentType;
     public float itemCooldowm;
     public ItemEffect[] itemEffects;
+    [TextArea]
+    public string itemEffectDescription;
 
     [Header("主要属性 Major stats")]
     public int strength;//力量
@@ -118,7 +121,32 @@ public class ItemData_Equipment : ItemData
         AddItemDescription(iceDamage, "冰");
         AddItemDescription(ligitningDamage, "雷");
 
+        if (itemEffectDescription.Length > 0)
+        {
+            sb.AppendLine();
+            sb.Append(WrapText(itemEffectDescription, 9));
+        }
+
         return sb.ToString();
+    }
+
+    private string WrapText(string text, int charsPerLine)//扩展方法
+    {
+        if (string.IsNullOrEmpty(text) || charsPerLine <= 0)
+            return text;
+
+        var wrapped = new StringBuilder();
+        for (int i = 0; i < text.Length; i += charsPerLine)
+        {
+            int remaining = text.Length - i;
+            int take = Mathf.Min(charsPerLine, remaining);
+
+            wrapped.Append(text.Substring(i, take));
+
+            if (remaining > charsPerLine)
+                wrapped.Append('\n');
+        }
+        return wrapped.ToString();
     }
 
     private void AddItemDescription(int _value,string _name)

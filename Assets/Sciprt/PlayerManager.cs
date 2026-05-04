@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
     public Player player;
+    public int currency;
 
     private void Awake()
     {
@@ -17,5 +18,16 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    public bool HaveEnoughMoney(int _price)
+    {
+        if (_price > currency)
+        {
+            Debug.Log("Ç®²»¹»!");
+            return false;
+        }
+        currency -= _price;
+        return true;
     }
 }

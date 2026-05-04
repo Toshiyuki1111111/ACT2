@@ -12,18 +12,8 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        if (player == null)
-        {
-            Debug.LogError("Player reference is null!");
-            return;
-        }
 
-        if (SkillManager.instance == null || SkillManager.instance.clone == null)
-        {
-            Debug.LogError("SkillManager or clone skill is not available!");
-            return;
-        }
-
+        player.skill.dash.CloneOnDash();
         //SkillManager.instance.clone.CreateClone(player.transform,Vector3.zero);
 
         stateTimer = player.dashDuration;
@@ -32,6 +22,8 @@ public class PlayerDashState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        player.skill.dash.CloneOnArraval();
 
         player.SetVelocity(0, rb.velocity.y);
     }
