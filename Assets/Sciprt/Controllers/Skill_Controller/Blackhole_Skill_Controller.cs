@@ -95,6 +95,13 @@ public class Blackhole_Skill_Controller : MonoBehaviour
     {
         if (cloneAttackTimer < 0 && cloneAttackReleased && amountOfAttacks > 0)
         {
+            if (targets == null || targets.Count == 0)
+            {
+                Debug.LogWarning("No targets available for clone attack!");
+                FinishBlackHoleAbility();
+                return;
+            }
+
             cloneAttackTimer = cloneAttackCooldown;
             int randomIndex = Random.Range(0, targets.Count);
 
@@ -142,7 +149,15 @@ public class Blackhole_Skill_Controller : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)=>collision.GetComponent<Enemy>().FreezeTime(false);
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.FreezeTime(false);
+        }
+    }
+
 
     private void CreateHotKey(Collider2D collision)
     {
