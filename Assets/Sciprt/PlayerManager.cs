@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour,ISaveManager
 {
     public static PlayerManager instance;
     public Player player;
@@ -31,8 +31,15 @@ public class PlayerManager : MonoBehaviour
         return true;
     }
 
-    public int CurrentSoul()
+    public int CurrentSoul() => soul;
+
+    public void LoadData(GameData _data)
     {
-        return soul;
+        soul = _data.soul;
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.soul = this.soul;
     }
 }
