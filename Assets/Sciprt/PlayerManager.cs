@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
     public Player player;
-    public int currency;
+    public int soul;
 
     private void Awake()
     {
@@ -22,12 +22,17 @@ public class PlayerManager : MonoBehaviour
 
     public bool HaveEnoughMoney(int _price)
     {
-        if (_price > currency)
+        if (_price > soul)
         {
             Debug.Log("Ç®²»¹»!");
             return false;
         }
-        currency -= _price;
+        soul -= _price;
         return true;
+    }
+
+    public int CurrentSoul()
+    {
+        return soul;
     }
 }

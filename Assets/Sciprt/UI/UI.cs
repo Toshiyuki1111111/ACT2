@@ -8,15 +8,20 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject skillTreeUI;
     [SerializeField] private GameObject craftUI;
     [SerializeField] private GameObject optionsUI;
+    [SerializeField] private GameObject inGameUI;
 
     public UI_SkillTooltip skillTooltip;
     public UI_ItemTooltip itemTooltip;
     public UI_StatTooltip statTooltip;
     public UI_CraftWindow craftWindow;
+
+    private void Awake()
+    {
+        SwitchTo(skillTreeUI);//手动打开技能树界面，分配时间
+    }
     void Start()
     {
-        //itemTooltip = GetComponentInChildren<UI_ItemTooltip>();
-        SwitchTo(null);
+        SwitchTo(inGameUI);
     }
 
     // Update is called once per frame
@@ -53,9 +58,20 @@ public class UI : MonoBehaviour
         if(_menu != null && _menu.activeSelf)
         {
             _menu.SetActive(false);
+            CheckForInGameUI();
             return;
         }
         SwitchTo(_menu);
         return;
+    }
+
+    private void CheckForInGameUI()
+    {
+        for(int i=0;i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+                return;
+        }
+        SwitchTo(inGameUI);
     }
 }
