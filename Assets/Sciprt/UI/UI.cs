@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+    public UI_FadeScreen fadeScreen;
+    [Space]
 
     [SerializeField] private GameObject characterUI;
     [SerializeField] private GameObject skillTreeUI;
@@ -44,7 +46,9 @@ public class UI : MonoBehaviour
     {
         for(int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            bool fadeScreen = transform.GetChild(i).GetComponent<UI_FadeScreen>() != null;
+            if(!fadeScreen)
+                transform.GetChild(i).gameObject.SetActive(false);
         }
 
         if(_menu != null)

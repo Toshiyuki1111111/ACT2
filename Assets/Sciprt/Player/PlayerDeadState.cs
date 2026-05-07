@@ -13,6 +13,14 @@ public class PlayerDeadState : PlayerState
         player.anim.SetTrigger("Dead");
         rb = player.rb;
         triggerCalled = false;
+
+        player.StartCoroutine(DelayedFadeOut(1f));
+    }
+
+    private IEnumerator DelayedFadeOut(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GameObject.Find("Canvas").GetComponent<UI>().fadeScreen.FadeOut();
     }
 
     public override void Exit()

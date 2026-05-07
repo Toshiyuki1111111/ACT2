@@ -194,7 +194,7 @@ public class Inventory : MonoBehaviour,ISaveManager
             stash.Add(newItem);
             stashDictionary.Add(_item, newItem);
         }
-    }
+    } 
 
     private void AddToInventory(ItemData _item)
     {
@@ -319,12 +319,6 @@ public class Inventory : MonoBehaviour,ISaveManager
 
     public void LoadData(GameData _data)
     {
-        // 在 Editor 非播放模式下跳过 LoadData
-//#if UNITY_EDITOR
-//        if (!UnityEditor.EditorApplication.isPlaying)
-//            return;
-//#endif
-
         foreach (KeyValuePair<string,int> pair in _data.inventory)
         {
             foreach(var item in GetItemDataBase())
@@ -355,7 +349,7 @@ public class Inventory : MonoBehaviour,ISaveManager
     {
         _data.inventory.Clear();
         _data.equipmentId.Clear();
-
+        
         foreach(KeyValuePair<ItemData,InventoryItem> pair in inventoryDictionary)
         {
             _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
@@ -385,5 +379,10 @@ public class Inventory : MonoBehaviour,ISaveManager
         }
 
         return itemDataBase;
+    }
+    public void ClearLoadedData()
+    {
+        loadedItems.Clear();
+        loadedEquipment.Clear();
     }
 }

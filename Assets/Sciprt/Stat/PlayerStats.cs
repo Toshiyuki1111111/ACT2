@@ -23,4 +23,12 @@ public class PlayerStats : CharacterStats
         base.Die();
         player.Die();
     }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (currentHealth > GetMaxHealth())
+            currentHealth = GetMaxHealth();
+    }
 }

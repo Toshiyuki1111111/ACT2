@@ -12,8 +12,8 @@ public class SaveManager : MonoBehaviour
     public List<ISaveManager> saveManagers;
     private FileDataHandler dataHandler;
 
-    [ContextMenu("Delete save file")]
-    private void DeleteSavedData()
+    [ContextMenu("Delete save file")  ]
+    public void DeleteSavedData()
     {
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         dataHandler.Delete();
@@ -53,7 +53,15 @@ public class SaveManager : MonoBehaviour
             NewGame();
         }
 
-        foreach(ISaveManager saveManager in saveManagers)
+        foreach (ISaveManager saveManager in saveManagers)
+        {
+            if (saveManager is Inventory inventory)
+            {
+                inventory.ClearLoadedData();  // 需要添加这个方法
+            }
+        }
+
+        foreach (ISaveManager saveManager in saveManagers)
         {
             saveManager.LoadData(gameData);
         }
@@ -81,5 +89,15 @@ public class SaveManager : MonoBehaviour
         IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveManager>();
 
         return new List<ISaveManager>(saveManagers);
+    }
+
+    public bool HasSaveData()
+    {
+        if (dataHandler.Load() != null)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
