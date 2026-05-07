@@ -9,6 +9,10 @@ public class Parry_Skill : Skill
     [SerializeField] private UI_SkillTreeSlot parryUnlockButton;
     public bool parryUnlocked { get; private set; }
 
+    protected override void CheckUnlock()
+    {
+        UnlockParry();
+    }
 
     public override void UseSkill()
     {

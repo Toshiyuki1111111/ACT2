@@ -33,6 +33,13 @@ public class Crystal_Skill : Skill
         unlockExplosiveCrystalButton.GetComponent<Button>().onClick.AddListener(UnlockExplosiveCrystal);
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockCrystal();
+        UnlockCrystalMirage();
+        UnlockExplosiveCrystal();
+    }
+
     private void UnlockCrystal()
     {
         if (unlockCrystalButton.unlocked)

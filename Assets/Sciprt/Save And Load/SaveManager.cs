@@ -12,21 +12,31 @@ public class SaveManager : MonoBehaviour
     public List<ISaveManager> saveManagers;
     private FileDataHandler dataHandler;
 
+    [ContextMenu("Delete save file")]
+    private void DeleteSavedData()
+    {
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        dataHandler.Delete();
+    }
+
     private void Awake()
     {
         if(instance != null)
             Destroy(instance.gameObject);
         else
             instance = this;
+
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        saveManagers = FindAllSaveManagers();
+
+        LoadGame();
     }
 
     private void Start()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        saveManagers = FindAllSaveManagers();
-         
-        LoadGame();
+        
     }
+
 
 
     public void NewGame()

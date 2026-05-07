@@ -56,6 +56,12 @@ public class Sword_Skill : Skill
         pierceUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockPierceSword);
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockSword();
+        UnlockPierceSword();
+    }
+
     private void SetupGravity()
     {
         if (swordType == SwordType.Bounce)

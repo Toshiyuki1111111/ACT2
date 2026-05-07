@@ -68,4 +68,10 @@ public class Blackhole_Skill : Skill
         return false;
     }
 
+    protected override void CheckUnlock()
+    {
+        base.CheckUnlock();
+
+        UnlockBlackhole();
+    }
 }

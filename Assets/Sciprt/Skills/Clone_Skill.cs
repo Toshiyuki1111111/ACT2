@@ -18,6 +18,13 @@ public class Clone_Skill : Skill
         if (cloneAttackUnlockButton.unlocked)
             canAttack = true;
     }
+
+    protected override void CheckUnlock()
+    {
+        base.CheckUnlock();
+
+        UnlockCloneAttack();
+    }
     #endregion
 
     protected override void Start()

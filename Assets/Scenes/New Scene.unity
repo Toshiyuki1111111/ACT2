@@ -25170,10 +25170,12 @@ MonoBehaviour:
   - data: {fileID: 0}
     stackSize: 0
   stash: []
+  startItems: []
   inventorySlotParent: {fileID: 1385829651}
   stashSlotParent: {fileID: 365060201}
   equipmentSlotParent: {fileID: 2079212388}
   statSlotParent: {fileID: 836720581}
+  loadedItems: []
 --- !u!4 &1528722328
 Transform:
   m_ObjectHideFlags: 0
@@ -32399,6 +32401,7 @@ SceneRoots:
   - {fileID: 7798153339291491704}
   - {fileID: 1793002595}
   - {fileID: 1528722328}
+  - {fileID: 1366429042}
   - {fileID: 362453922}
   - {fileID: 1493346821}
   - {fileID: 932192422}
@@ -32411,4 +32414,3 @@ SceneRoots:
   - {fileID: 2009077793}
   - {fileID: 1556142090}
   - {fileID: 770539205}
-  - {fileID: 1366429042}

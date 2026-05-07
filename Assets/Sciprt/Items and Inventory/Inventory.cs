@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour,ISaveManager
 {
     public static Inventory instance;
 
@@ -15,6 +16,8 @@ public class Inventory : MonoBehaviour
 
     public List<InventoryItem> stash;
     public Dictionary<ItemData, InventoryItem> stashDictionary;
+
+    public List<ItemData> startItems;
 
 
     [Header("Inventory UI")]
@@ -30,8 +33,11 @@ public class Inventory : MonoBehaviour
 
     [Header("Items cooldown")]
     private float lastTimeUsedFlask;
-
     public float flaskCooldown { get; private set; }
+
+    [Header("Data base")]
+    public List<InventoryItem> loadedItems;
+    public List<ItemData_Equipment> loadedEquipment;
 
     private void Awake()
     {
@@ -56,6 +62,35 @@ public class Inventory : MonoBehaviour
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
         statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
+        AddStartingItems();
+    }
+
+    private void AddStartingItems()
+    {
+
+        foreach(ItemData_Equipment item in loadedEquipment)
+        {
+            EquipItem(item);
+        }
+
+        if(loadedItems.Count > 0)
+        {
+            foreach(InventoryItem item in loadedItems)
+            {
+                for(int i = 0; i < item.stackSize; i++)
+                {
+                    AddItem(item.data);
+                }
+            }
+            return;
+        }
+
+
+        for(int i = 0; i < startItems.Count; i++)
+        {
+            if (startItems[i] != null)
+                AddItem(startItems[i]);
+        }
     }
     public void EquipItem(ItemData _item)
     {
@@ -280,5 +315,75 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Flask on cooldown");
         }
+    }
+
+    public void LoadData(GameData _data)
+    {
+        // 在 Editor 非播放模式下跳过 LoadData
+//#if UNITY_EDITOR
+//        if (!UnityEditor.EditorApplication.isPlaying)
+//            return;
+//#endif
+
+        foreach (KeyValuePair<string,int> pair in _data.inventory)
+        {
+            foreach(var item in GetItemDataBase())
+            {
+                if (item != null && item.itemId == pair.Key)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = pair.Value;
+
+                    loadedItems.Add(itemToLoad);
+                }
+            }
+        }
+
+        foreach(string loadedItemId in _data.equipmentId)
+        {
+            foreach(var item in GetItemDataBase())
+            {
+                if (item != null && loadedItemId == item.itemId)
+                {
+                    loadedEquipment.Add(item as ItemData_Equipment);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.inventory.Clear();
+        _data.equipmentId.Clear();
+
+        foreach(KeyValuePair<ItemData,InventoryItem> pair in inventoryDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+        }
+
+        foreach(KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+        }
+
+        foreach(KeyValuePair<ItemData_Equipment,InventoryItem> pair in equipmentDictionary)
+        {
+            _data.equipmentId.Add(pair.Key.itemId);
+        }
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDataBase = new List<ItemData>();
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Items" });
+    
+        foreach(string SOName in assetNames)
+        {
+            var SOpath=AssetDatabase.GUIDToAssetPath(SOName);
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
+            itemDataBase.Add(itemData);
+        }
+
+        return itemDataBase;
     }
 }
