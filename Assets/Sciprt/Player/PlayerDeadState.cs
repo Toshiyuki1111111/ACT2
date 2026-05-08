@@ -20,7 +20,7 @@ public class PlayerDeadState : PlayerState
     private IEnumerator DelayedFadeOut(float delay)
     {
         yield return new WaitForSeconds(delay);
-        GameObject.Find("Canvas").GetComponent<UI>().fadeScreen.FadeOut();
+        GameObject.Find("Canvas").GetComponent<UI>().SwitchOnEndScreen();
     }
 
     public override void Exit()

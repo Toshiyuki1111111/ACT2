@@ -42,18 +42,21 @@ public class Crystal_Skill : Skill
 
     private void UnlockCrystal()
     {
+        crystalUnlocked = false;
         if (unlockCrystalButton.unlocked)
             crystalUnlocked = true;
     }
 
     private void UnlockCrystalMirage()
     {
+        crystalMirageUnlocked = false;
         if (unlockCrystalMirageButton.unlocked)
             crystalMirageUnlocked = true;
     }
 
     private void UnlockExplosiveCrystal()
     {
+        explosiveCrystalUnlocked = false;
         if (unlockExplosiveCrystalButton.unlocked)
         {
             explosiveCrystalUnlocked = true;

@@ -1,9 +1,13 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 //using UnityEngine.Windows;
 
 public class UI : MonoBehaviour
 {
-    public UI_FadeScreen fadeScreen;
+    [SerializeField] private UI_FadeScreen fadeScreen;
+    [SerializeField] private GameObject endText;
+    [SerializeField] private GameObject restartButton;
     [Space]
 
     [SerializeField] private GameObject characterUI;
@@ -59,14 +63,17 @@ public class UI : MonoBehaviour
 
     public void SwitchWithKeyTo(GameObject _menu)
     {
-        if(_menu != null && _menu.activeSelf)
+        if (_menu != null && _menu.activeSelf)
         {
             _menu.SetActive(false);
-            CheckForInGameUI();
+            // 关闭菜单后直接显示 inGameUI
+            if (inGameUI != null)
+            {
+                inGameUI.SetActive(true);
+            }
             return;
         }
         SwitchTo(_menu);
-        return;
     }
 
     private void CheckForInGameUI()
@@ -77,5 +84,22 @@ public class UI : MonoBehaviour
                 return;
         }
         SwitchTo(inGameUI);
+    }
+
+    public void RestartGameButton() => GameManager.instance.RestartScene();
+
+    public void SwitchOnEndScreen()
+    {
+        SwitchTo(null);
+        fadeScreen.FadeOut();
+        StartCoroutine(EndScreenCorutione());
+    }
+
+    IEnumerator EndScreenCorutione()
+    {
+        yield return new WaitForSeconds(1.5f);
+        endText.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        restartButton.SetActive(true);
     }
 }

@@ -101,6 +101,7 @@ public class ItemData_Equipment : ItemData
 
     public override string GetDescription()
     {
+        if (sb == null) sb = new StringBuilder();
         sb.Length = 0;
 
         AddItemDescription(strength, "力量");
@@ -121,7 +122,7 @@ public class ItemData_Equipment : ItemData
         AddItemDescription(iceDamage, "冰");
         AddItemDescription(ligitningDamage, "雷");
 
-        if (itemEffectDescription.Length > 0)
+        if (!string.IsNullOrEmpty(itemEffectDescription))
         {
             sb.AppendLine();
             sb.Append(WrapText(itemEffectDescription, 9));
@@ -132,8 +133,9 @@ public class ItemData_Equipment : ItemData
 
     private string WrapText(string text, int charsPerLine)//扩展方法
     {
+
         if (string.IsNullOrEmpty(text) || charsPerLine <= 0)
-            return text;
+            return "";
 
         var wrapped = new StringBuilder();
         for (int i = 0; i < text.Length; i += charsPerLine)

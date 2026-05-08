@@ -28,6 +28,7 @@ public class Parry_Skill : Skill
 
     private void UnlockParry()
     {
+        parryUnlocked = false;
         if (parryUnlockButton.unlocked)
             parryUnlocked = true;
     }

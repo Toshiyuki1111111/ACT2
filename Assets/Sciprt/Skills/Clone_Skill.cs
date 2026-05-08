@@ -15,6 +15,7 @@ public class Clone_Skill : Skill
     #region Unlock region
     private void UnlockCloneAttack()
     {
+        canAttack = false;
         if (cloneAttackUnlockButton.unlocked)
             canAttack = true;
     }

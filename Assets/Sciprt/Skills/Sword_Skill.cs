@@ -118,12 +118,14 @@ public class Sword_Skill : Skill
     #region Unlock
     private void UnlockSword()
     {
+        swordUnlocked = false;
         if (swordUnlockButton.unlocked)
             swordUnlocked = true;
     }
 
     private void UnlockPierceSword()
     {
+        swordType = SwordType.Regular;
         if(pierceUnlockButton.unlocked)
             swordType = SwordType.Pierce;
     }
