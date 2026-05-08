@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour, ISaveManager
         }
         checkpoints = FindObjectsOfType<CheckPoint>();
 
+
     }
     private void Start()
     {

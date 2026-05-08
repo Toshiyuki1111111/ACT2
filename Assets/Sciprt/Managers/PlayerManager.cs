@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour,ISaveManager
         return true;
     }
 
-    public int CurrentSoul() => soul;
+    public int GetCurrentSoul() => soul;
 
     public void LoadData(GameData _data)
     {

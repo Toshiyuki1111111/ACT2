@@ -15270,8 +15270,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -1.1125946, y: 0}
-  m_SizeDelta: {x: -27.7748, y: 0}
+  m_AnchoredPosition: {x: 4.168106, y: 0}
+  m_SizeDelta: {x: -17.2133, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &723972992
 PrefabInstance:
@@ -18582,9 +18582,9 @@ RectTransform:
   m_Father: {fileID: 711247749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.1515961, y: 0.063999176}
-  m_SizeDelta: {x: 10.5086, y: -10.887}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -4.120117, y: 0.063999176}
+  m_SizeDelta: {x: 0.1931, y: -10.887}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918704734
 MonoBehaviour:
@@ -21724,7 +21724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1190860632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21773,6 +21773,8 @@ MonoBehaviour:
   blackholeImage: {fileID: 1371290225}
   flaskImage: {fileID: 524053609}
   currentSouls: {fileID: 1049988783}
+  soulsAmount: 0
+  increaseRate: 5000
 --- !u!114 &1190860634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26831,7 +26833,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.595
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
